@@ -1,16 +1,15 @@
 //
-//  Hero.swift
+//  Ninja.swift
 //  Ninja
 //
-//  Created by Sebastian Sandtorv  on 19/05/15.
+//  Created by Sebastian Sandtorv  on 11/06/15.
 //  Copyright (c) 2015 Sebastian Sandtorv . All rights reserved.
 //
 
 import Foundation
 import SpriteKit
 
-class Hero: SKSpriteNode {
-    
+class Ninja: SKSpriteNode {
     var body: SKSpriteNode!
     var arm: SKSpriteNode!
     var leftFoot: SKSpriteNode!
@@ -18,15 +17,54 @@ class Hero: SKSpriteNode {
     
     var isUpsideDown = false
     
-    init() {
+    init(){
         let size = CGSizeMake(32, 44)
         super.init(texture: nil, color: UIColor.clearColor(), size: size)
-        
-        loadAppearance()
-        loadPhysicsBodyWithSize(size)
+        drawNinja()
+    }
+
+    func startRunning() {
+        let rotateBack = SKAction.rotateByAngle(-CGFloat(M_PI)*2, duration: 0.3)
+        arm.runAction(rotateBack)
+        performOneRunCycle()
     }
     
-    func loadAppearance() {
+    func performOneRunCycle() {
+        let up = SKAction.moveByX(0, y: 2, duration: 0.05)
+        let down = SKAction.moveByX(0, y: -2, duration: 0.05)
+        
+        leftFoot.runAction(up, completion: { () -> Void in
+            self.leftFoot.runAction(down)
+            self.rightFoot.runAction(up, completion: { () -> Void in
+                self.rightFoot.runAction(down, completion: { () -> Void in
+                    self.performOneRunCycle()
+                })
+            })
+        })
+    }
+    
+    func stop(){
+        body.removeAllActions()
+        leftFoot.removeAllActions()
+        rightFoot.removeAllActions()
+    }
+    
+    func breathe(){
+        let breatheOut = SKAction.moveByX(0, y: 2, duration: 0.2)
+        let breatheIn = SKAction.moveByX(0, y: -2, duration: 0.2)
+        let breath = SKAction.sequence([breatheOut, breatheIn])
+        body.runAction(SKAction.repeatActionForever(breath))
+    }
+    
+    func jump(){
+        let jumpUp = SKAction.moveToY(150, duration: 0.5)
+        let jumpDown = SKAction.moveToY(0, duration: 0.5)
+        let jump = SKAction.sequence([jumpUp, jumpDown])
+        body.runAction(jump)
+        
+    }
+    
+    func drawNinja(){
         body = SKSpriteNode(color: UIColor.blackColor(), size: CGSizeMake(self.frame.size.width, 40))
         body.position = CGPointMake(0, 2)
         addChild(body)
@@ -68,84 +106,15 @@ class Hero: SKSpriteNode {
         
         leftFoot = SKSpriteNode(color: UIColor.blackColor(), size: CGSizeMake(9, 4))
         leftFoot.position = CGPointMake(-6, -size.height/2 + leftFoot.size.height/2)
-        addChild(leftFoot)
+        body.addChild(leftFoot)
         
         rightFoot = leftFoot.copy() as! SKSpriteNode
         rightFoot.position.x = 8
-        addChild(rightFoot)
-    }
-    
-    func loadPhysicsBodyWithSize(size: CGSize) {
-        physicsBody = SKPhysicsBody(rectangleOfSize: size)
-        physicsBody?.categoryBitMask = heroCategory
-        physicsBody?.contactTestBitMask = wallCategory
-        physicsBody?.affectedByGravity = false
+        body.addChild(rightFoot)
+
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-
-    func flip() {
-        isUpsideDown = !isUpsideDown
-        
-        var scale: CGFloat!
-        if isUpsideDown {
-            scale = -1.0
-        } else {
-            scale = 1.0
-        }
-        let translate = SKAction.moveByX(0, y: scale*(size.height + kGroundHeight), duration: 0.1)
-        let flip = SKAction.scaleYTo(scale, duration: 0.1)
-        
-        runAction(translate)
-        runAction(flip)
-    }
-    
-    func fall() {
-        physicsBody?.affectedByGravity = true
-        physicsBody?.applyImpulse(CGVectorMake(-5, 30))
-        
-        let rotateBack = SKAction.rotateByAngle(CGFloat(M_PI) / 2, duration: 0.4)
-        runAction(rotateBack)
-    }
-    
-    func startRunning() {
-        let rotateBack = SKAction.rotateByAngle(-CGFloat(M_PI)/2.0, duration: 0.1)
-        arm.runAction(rotateBack)
-        
-        performOneRunCycle()
-    }
-    
-    func performOneRunCycle() {
-        let up = SKAction.moveByX(0, y: 2, duration: 0.05)
-        let down = SKAction.moveByX(0, y: -2, duration: 0.05)
-        
-        leftFoot.runAction(up, completion: { () -> Void in
-            self.leftFoot.runAction(down)
-            self.rightFoot.runAction(up, completion: { () -> Void in
-                self.rightFoot.runAction(down, completion: { () -> Void in
-                    self.performOneRunCycle()
-                })
-            })
-        })
-    }
-    
-    func breathe() {
-        let breatheOut = SKAction.moveByX(0, y: -2, duration: 1)
-        let breatheIn = SKAction.moveByX(0, y: 2, duration: 1)
-        let breath = SKAction.sequence([breatheOut, breatheIn])
-        body.runAction(SKAction.repeatActionForever(breath))
-    }
-    
-    func stop() {
-        body.removeAllActions()
-        leftFoot.removeAllActions()
-        rightFoot.removeAllActions()
-    }
-    
-    
-    
-    
 }

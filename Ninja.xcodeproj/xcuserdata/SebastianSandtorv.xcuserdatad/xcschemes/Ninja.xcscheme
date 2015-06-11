@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "52BC701A1B0B82A600DE56C3"
+               BlueprintIdentifier = "520E2D141B295AE800C11357"
                BuildableName = "Ninja.app"
                BlueprintName = "Ninja"
                ReferencedContainer = "container:Ninja.xcodeproj">
@@ -28,7 +28,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "52BC70331B0B82A600DE56C3"
+               BlueprintIdentifier = "520E2D2D1B295AE800C11357"
                BuildableName = "NinjaTests.xctest"
                BlueprintName = "NinjaTests"
                ReferencedContainer = "container:Ninja.xcodeproj">
@@ -46,7 +46,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "52BC70331B0B82A600DE56C3"
+               BlueprintIdentifier = "520E2D2D1B295AE800C11357"
                BuildableName = "NinjaTests.xctest"
                BlueprintName = "NinjaTests"
                ReferencedContainer = "container:Ninja.xcodeproj">
@@ -56,7 +56,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "52BC701A1B0B82A600DE56C3"
+            BlueprintIdentifier = "520E2D141B295AE800C11357"
             BuildableName = "Ninja.app"
             BlueprintName = "Ninja"
             ReferencedContainer = "container:Ninja.xcodeproj">
@@ -76,7 +76,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "52BC701A1B0B82A600DE56C3"
+            BlueprintIdentifier = "520E2D141B295AE800C11357"
             BuildableName = "Ninja.app"
             BlueprintName = "Ninja"
             ReferencedContainer = "container:Ninja.xcodeproj">
@@ -95,7 +95,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "52BC701A1B0B82A600DE56C3"
+            BlueprintIdentifier = "520E2D141B295AE800C11357"
             BuildableName = "Ninja.app"
             BlueprintName = "Ninja"
             ReferencedContainer = "container:Ninja.xcodeproj">
