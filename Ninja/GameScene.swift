@@ -8,15 +8,20 @@
 
 import SpriteKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     var ninja: Ninja!
     var ground: Ground!
+    var wallGenerator: WallGenerator!
+    
+    var isStarted = false
+    var isGameOver = false
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         addGround()
         addNinja()
-        start()
+        addWallGenerator()
+        addPhysicsWorld()
         backgroundColor = UIColor.whiteColor()
     }
     
@@ -25,13 +30,37 @@ class GameScene: SKScene {
         
         for touch in (touches as! Set<UITouch>) {
             let location = touch.locationInNode(self)
-            ninja.jump()
+            if isGameOver{
+                restart()
+            } else if !isStarted {
+                start()
+            } else {
+                ninja.jump()
+            }
         }
     }
     
     func start(){
+        isStarted = true
+        isGameOver = false
         ground.start()
         ninja.startRunning()
+        wallGenerator.startGeneratingWalls(0.8)
+    }
+    
+    func gameOver(){
+        isGameOver = true
+        ninja.fall()
+        ninja.stop()
+        wallGenerator.stopWalls()
+        ground.stop()
+    }
+    
+    func restart(){
+        let newScene = GameScene(size: view!.bounds.size)
+        newScene.scaleMode = .AspectFill
+        
+        view!.presentScene(newScene)
     }
     
     func addNinja() {
@@ -48,7 +77,37 @@ class GameScene: SKScene {
         addChild(ground)
     }
     
+    func addWallGenerator(){
+        wallGenerator = WallGenerator(color: UIColor.clearColor(), size: view!.frame.size)
+        wallGenerator.position = view!.center
+        addChild(wallGenerator)
+    }
+    
+    // MARK: - SKPhysicsContactDelegate
+    func didBeginContact(contact: SKPhysicsContact) {
+        if !isGameOver {
+            gameOver()
+            println("Game over?!?")
+        } else{
+            println("Not game over?!?")
+        }
+    }
+    
+    func addPhysicsWorld(){
+        physicsWorld.contactDelegate = self
+    }
+    
     override func update(currentTime: CFTimeInterval) {
-        /* Called before each frame is rendered */
+        
+        if wallGenerator.wallTrackers.count > 0 {
+            
+            let wall = wallGenerator.wallTrackers[0] as Wall
+            
+            let wallLocation = wallGenerator.convertPoint(wall.position, toNode: self)
+            if wallLocation.x < ninja.position.x {
+                wallGenerator.wallTrackers.removeAtIndex(0)
+            }
+        }
+        
     }
 }

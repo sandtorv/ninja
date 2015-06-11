@@ -12,12 +12,18 @@ import SpriteKit
 class GameViewController: UIViewController {
     
     var scene: GameScene!
+    var wallGenerator: WallGenerator!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Configure the view
         let skView = view as! SKView
         skView.multipleTouchEnabled = false
+        
+        // Debug stuff
+        skView.showsPhysics = true
+        skView.showsFPS = true
+        skView.showsNodeCount = true
         
         // Create and configure the scene
         scene = GameScene(size: skView.bounds.size)

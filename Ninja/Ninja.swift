@@ -21,6 +21,7 @@ class Ninja: SKSpriteNode {
         let size = CGSizeMake(32, 44)
         super.init(texture: nil, color: UIColor.clearColor(), size: size)
         drawNinja()
+        loadPhysicsBodyWithSize(size)
     }
 
     func startRunning() {
@@ -50,19 +51,37 @@ class Ninja: SKSpriteNode {
     }
     
     func breathe(){
-        let breatheOut = SKAction.moveByX(0, y: 2, duration: 0.2)
-        let breatheIn = SKAction.moveByX(0, y: -2, duration: 0.2)
+        let breatheOut = SKAction.moveByX(0, y: 1, duration: 0.2)
+        let breatheIn = SKAction.moveByX(0, y: -1, duration: 0.2)
         let breath = SKAction.sequence([breatheOut, breatheIn])
         body.runAction(SKAction.repeatActionForever(breath))
     }
     
     func jump(){
-        let jumpUp = SKAction.moveToY(150, duration: 0.5)
-        let jumpDown = SKAction.moveToY(0, duration: 0.5)
+        var jumpUp = SKAction.moveToY(100, duration: 0.25)
+        jumpUp.timingMode = .EaseInEaseOut
+        var jumpDown = SKAction.moveToY(0, duration: 0.25)
+        jumpDown.timingMode = .EaseIn
         let jump = SKAction.sequence([jumpUp, jumpDown])
         body.runAction(jump)
         
     }
+    
+    func loadPhysicsBodyWithSize(size: CGSize) {
+        body.physicsBody = SKPhysicsBody(rectangleOfSize: size)
+        body.physicsBody?.categoryBitMask = ninjaCategory
+        body.physicsBody?.contactTestBitMask = wallCategory
+        body.physicsBody?.affectedByGravity = false
+    }
+    
+    func fall() {
+        body.physicsBody?.affectedByGravity = true
+        body.physicsBody?.applyImpulse(CGVectorMake(-5, 30))
+        
+        let rotateBack = SKAction.rotateByAngle(CGFloat(M_PI) / 2, duration: 0.4)
+        runAction(rotateBack)
+    }
+
     
     func drawNinja(){
         body = SKSpriteNode(color: UIColor.blackColor(), size: CGSizeMake(self.frame.size.width, 40))
