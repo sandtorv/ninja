@@ -61,9 +61,12 @@ class Ninja: SKSpriteNode {
     }
     
     func jump(){
-        var jumpUp = SKAction.moveByX(0, y: 100, duration: 0.25)
+        let rotateBack = SKAction.rotateByAngle(-CGFloat(M_PI)*2, duration: 0.46)
+        rotateBack.timingMode = .EaseInEaseOut
+        body.runAction(rotateBack)
+        var jumpUp = SKAction.moveByX(0, y: 100, duration: 0.23)
         jumpUp.timingMode = .EaseInEaseOut
-        var jumpDown = SKAction.moveByX(0, y: -100, duration: 0.25)
+        var jumpDown = SKAction.moveByX(0, y: -100, duration: 0.23)
         jumpDown.timingMode = .EaseIn
         let jump = SKAction.sequence([jumpUp, jumpDown])
         body.runAction(jump)
@@ -79,7 +82,7 @@ class Ninja: SKSpriteNode {
     
     func fall() {
         body.physicsBody?.affectedByGravity = true
-        body.physicsBody?.applyImpulse(CGVectorMake(-5, 30))
+        body.physicsBody?.applyImpulse(CGVectorMake(-10, 30))
         
         let rotateBack = SKAction.rotateByAngle(CGFloat(M_PI) / 2, duration: 0.4)
         runAction(rotateBack)

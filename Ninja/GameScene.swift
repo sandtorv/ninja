@@ -170,8 +170,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         } else {
             isJumping = true
         }
-        println("ninja: \(ninja.position.y), ground: \(ninjaPositionY), ninja.body: \(ninja.body.position.y)")
-        
     }
     
     func zoomAnimation() -> SKAction {
