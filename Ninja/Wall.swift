@@ -10,14 +10,15 @@ import Foundation
 import SpriteKit
 
 class Wall: SKSpriteNode{
-    let wallWidth: CGFloat = 20.0
-    let wallHeight: CGFloat = 30.0
-    let wallColor = UIColor.blackColor()
+    let wallWidth: CGFloat = 5.0
+    let wallHeight: CGFloat = 20.0
+    var wallColor = UIColor.blackColor()
     
     init(){
-        let size = CGSizeMake(wallWidth, wallHeight)
+        var randomWallHeight: CGFloat = wallHeight + CGFloat(arc4random_uniform(30))
+        var randomWallWidth: CGFloat = wallWidth + CGFloat(arc4random_uniform(20))
+        let size = CGSizeMake(randomWallWidth,randomWallHeight)
         super.init(texture: nil, color: wallColor, size: size)
-        println("Size is: \(size)")
         loadPhysicsBody(size)
         startMoving()
     }
@@ -35,6 +36,14 @@ class Wall: SKSpriteNode{
     
     func stopMoving(){
         removeAllActions()
+    }
+    
+    // Generates a random color
+    func randomColor() -> UIColor{
+        var red:CGFloat = CGFloat(drand48())
+        var green:CGFloat = CGFloat(drand48())
+        var blue:CGFloat = CGFloat(drand48())
+        return UIColor(red: red, green: green, blue: blue, alpha: 1.0)
     }
     
     required init?(coder aDecoder: NSCoder) {

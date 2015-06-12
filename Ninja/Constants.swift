@@ -9,6 +9,9 @@
 import Foundation
 import UIKit
 
+// Activate if debug mode
+let debugActive: Bool = false
+
 let groundHeight: CGFloat = 10.0
 let moveXSpeed: CGFloat = 320.0
 var ninjaPositionY: CGFloat!

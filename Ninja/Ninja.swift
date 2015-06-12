@@ -25,14 +25,14 @@ class Ninja: SKSpriteNode {
     }
 
     func startRunning() {
-        let rotateBack = SKAction.rotateByAngle(-CGFloat(M_PI)*2, duration: 0.3)
+        let rotateBack = SKAction.rotateByAngle(-CGFloat(M_PI)*0.5, duration: 0.3)
         arm.runAction(rotateBack)
         performOneRunCycle()
     }
     
     func performOneRunCycle() {
-        let up = SKAction.moveByX(0, y: 2, duration: 0.05)
-        let down = SKAction.moveByX(0, y: -2, duration: 0.05)
+        let up = SKAction.moveByX(0, y: 1, duration: 0.1)
+        let down = SKAction.moveByX(0, y: -1, duration: 0.1)
         
         leftFoot.runAction(up, completion: { () -> Void in
             self.leftFoot.runAction(down)
@@ -51,16 +51,19 @@ class Ninja: SKSpriteNode {
     }
     
     func breathe(){
-        let breatheOut = SKAction.moveByX(0, y: 1, duration: 0.2)
-        let breatheIn = SKAction.moveByX(0, y: -1, duration: 0.2)
+        let breatheOut = SKAction.moveByX(0, y: 1, duration: 0.5)
+        let breatheIn = SKAction.moveByX(0, y: -1, duration: 0.5)
         let breath = SKAction.sequence([breatheOut, breatheIn])
+        let opositeBreath = SKAction.sequence([breatheIn, breatheOut])
         body.runAction(SKAction.repeatActionForever(breath))
+        leftFoot.runAction(SKAction.repeatActionForever(opositeBreath))
+        rightFoot.runAction(SKAction.repeatActionForever(opositeBreath))
     }
     
     func jump(){
-        var jumpUp = SKAction.moveToY(100, duration: 0.25)
+        var jumpUp = SKAction.moveByX(0, y: 100, duration: 0.25)
         jumpUp.timingMode = .EaseInEaseOut
-        var jumpDown = SKAction.moveToY(0, duration: 0.25)
+        var jumpDown = SKAction.moveByX(0, y: -100, duration: 0.25)
         jumpDown.timingMode = .EaseIn
         let jump = SKAction.sequence([jumpUp, jumpDown])
         body.runAction(jump)

@@ -21,9 +21,14 @@ class GameViewController: UIViewController {
         skView.multipleTouchEnabled = false
         
         // Debug stuff
-        skView.showsPhysics = true
-        skView.showsFPS = true
-        skView.showsNodeCount = true
+        if debugActive{
+            skView.showsPhysics = true
+            skView.showsFPS = true
+            skView.showsNodeCount = true
+            skView.showsDrawCount = true
+            skView.showsFields = true
+            skView.showsQuadCount = true
+        }
         
         // Create and configure the scene
         scene = GameScene(size: skView.bounds.size)

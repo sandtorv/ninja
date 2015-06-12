@@ -15,6 +15,7 @@
 		520E2D291B295AE800C11357 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 520E2D271B295AE800C11357 /* LaunchScreen.xib */; };
 		520E2D351B295AE800C11357 /* NinjaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520E2D341B295AE800C11357 /* NinjaTests.swift */; };
 		520E2D3F1B295BA000C11357 /* Ninja.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520E2D3E1B295BA000C11357 /* Ninja.swift */; };
+		525FE88E1B29FE25008F30A6 /* ScoreLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525FE88D1B29FE25008F30A6 /* ScoreLabel.swift */; };
 		526DAE4A1B29A16000735063 /* Wall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526DAE491B29A16000735063 /* Wall.swift */; };
 		526DAE4C1B29A21F00735063 /* WallGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526DAE4B1B29A21F00735063 /* WallGenerator.swift */; };
 		52E8B4601B2982E0009B3810 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E8B45F1B2982E0009B3810 /* Constants.swift */; };
@@ -44,6 +45,7 @@
 		520E2D331B295AE800C11357 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		520E2D341B295AE800C11357 /* NinjaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NinjaTests.swift; sourceTree = "<group>"; };
 		520E2D3E1B295BA000C11357 /* Ninja.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ninja.swift; sourceTree = "<group>"; };
+		525FE88D1B29FE25008F30A6 /* ScoreLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScoreLabel.swift; path = ../ScoreLabel.swift; sourceTree = "<group>"; };
 		526DAE491B29A16000735063 /* Wall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wall.swift; sourceTree = "<group>"; };
 		526DAE4B1B29A21F00735063 /* WallGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallGenerator.swift; sourceTree = "<group>"; };
 		52E8B45F1B2982E0009B3810 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 				520E2D1A1B295AE800C11357 /* AppDelegate.swift */,
 				52E8B45F1B2982E0009B3810 /* Constants.swift */,
 				520E2D1E1B295AE800C11357 /* GameScene.swift */,
+				525FE88D1B29FE25008F30A6 /* ScoreLabel.swift */,
 				520E2D3E1B295BA000C11357 /* Ninja.swift */,
 				526DAE491B29A16000735063 /* Wall.swift */,
 				526DAE4B1B29A21F00735063 /* WallGenerator.swift */,
@@ -237,6 +240,7 @@
 				520E2D211B295AE800C11357 /* GameViewController.swift in Sources */,
 				526DAE4C1B29A21F00735063 /* WallGenerator.swift in Sources */,
 				520E2D3F1B295BA000C11357 /* Ninja.swift in Sources */,
+				525FE88E1B29FE25008F30A6 /* ScoreLabel.swift in Sources */,
 				520E2D1B1B295AE800C11357 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
