@@ -19,3 +19,13 @@ var ninjaPositionY: CGFloat!
 // Collision Detection
 let ninjaCategory: UInt32 = 0x1 << 0
 let wallCategory: UInt32 = 0x1 << 1
+
+// MARK: Delay Helper
+func delay(delay:Double, closure:()->()) {
+    dispatch_after(
+        dispatch_time(
+            DISPATCH_TIME_NOW,
+            Int64(delay * Double(NSEC_PER_SEC))
+        ),
+        dispatch_get_main_queue(), closure)
+}
