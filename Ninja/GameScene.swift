@@ -39,7 +39,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         for touch in (touches as! Set<UITouch>) {
             let location = touch.locationInNode(self)
-            if isGameOver{
+            if isGameOver {
                 restart()
             } else if !isStarted {
                 start()
@@ -134,6 +134,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         if(scoreHolder >= highscoreHolder){
             NSdefaults.setInteger(scoreHolder, forKey: "highscore")
+            newRecordSound.play()
         }
         NSdefaults.synchronize()
     }
@@ -143,6 +144,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         var x: CGFloat = contact.contactNormal.dx
         var y: CGFloat = contact.contactNormal.dy
         if !isGameOver {
+            crashSound.play()
             gameOver()
         }
     }
