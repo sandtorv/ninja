@@ -15,10 +15,11 @@ class Wall: SKSpriteNode{
     var wallColor = UIColor.blackColor()
     
     init(){
-        var randomWallHeight: CGFloat = wallHeight + CGFloat(arc4random_uniform(30))
-        var randomWallWidth: CGFloat = wallWidth + CGFloat(arc4random_uniform(20))
+        var randomWallHeight: CGFloat = wallHeight + CGFloat(arc4random_uniform(70))
+        var randomWallWidth: CGFloat = wallWidth + CGFloat(arc4random_uniform(80))
         let size = CGSizeMake(randomWallWidth,randomWallHeight)
         super.init(texture: nil, color: wallColor, size: size)
+        color = randomColor()
         loadPhysicsBody(size)
         startMoving()
     }
