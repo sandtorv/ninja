@@ -61,7 +61,6 @@ class Ninja: SKSpriteNode {
     }
     
     func jump(){
-        jumpSound.play()
         let rotateBack = SKAction.rotateByAngle(-CGFloat(M_PI)*2, duration: 0.48)
         rotateBack.timingMode = .EaseInEaseOut
         body.runAction(rotateBack)
@@ -69,7 +68,7 @@ class Ninja: SKSpriteNode {
         jumpUp.timingMode = .EaseInEaseOut
         var jumpDown = SKAction.moveByX(0, y: -100, duration: 0.24)
         jumpDown.timingMode = .EaseIn
-        let jump = SKAction.sequence([jumpUp, jumpDown])
+        let jump = SKAction.sequence([jumpSound, jumpUp, jumpDown])
         body.runAction(jump)
     }
     

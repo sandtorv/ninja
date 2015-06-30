@@ -15,9 +15,6 @@ class GameViewController: UIViewController {
     var wallGenerator: WallGenerator!
     
     override func viewDidLoad() {
-        // Initialize sounds
-        initSounds()
-        
         super.viewDidLoad()
         // Configure the view
         let skView = view as! SKView

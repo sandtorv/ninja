@@ -9,24 +9,8 @@
 import Foundation
 import UIKit
 import AVFoundation
+import SpriteKit
 
-var BGSound = AVAudioPlayer()
-var jumpSound = AVAudioPlayer()
-var crashSound = AVAudioPlayer()
-var gameOverSound = AVAudioPlayer()
-var newRecordSound = AVAudioPlayer()
-
-func setupAudioPlayerWithFile(file:NSString, type:NSString) -> AVAudioPlayer  {
-    var path = NSBundle.mainBundle().pathForResource(file as String, ofType: type as String)
-    var url = NSURL.fileURLWithPath(path!)
-    var error: NSError?
-    var audioPlayer:AVAudioPlayer?
-    audioPlayer = AVAudioPlayer(contentsOfURL: url, error: &error)
-    return audioPlayer!
-}
-
-func initSounds(){
-    jumpSound = setupAudioPlayerWithFile("jump", "wav")
-    newRecordSound = setupAudioPlayerWithFile("winning", "wav")
-    crashSound = setupAudioPlayerWithFile("crash", "wav")
-}
+let jumpSound = SKAction.playSoundFileNamed("jump.wav", waitForCompletion: false)
+let crashSound = SKAction.playSoundFileNamed("crash.wav", waitForCompletion: false)
+let winSound = SKAction.playSoundFileNamed("winning.wav", waitForCompletion: false)

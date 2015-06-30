@@ -134,7 +134,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         if(scoreHolder >= highscoreHolder){
             NSdefaults.setInteger(scoreHolder, forKey: "highscore")
-            newRecordSound.play()
+            runAction(winSound)
         }
         NSdefaults.synchronize()
     }
@@ -144,7 +144,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         var x: CGFloat = contact.contactNormal.dx
         var y: CGFloat = contact.contactNormal.dy
         if !isGameOver {
-            crashSound.play()
+            runAction(crashSound)
             gameOver()
         }
     }
